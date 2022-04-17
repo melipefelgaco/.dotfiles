@@ -1,6 +1,7 @@
-# CD Aliases
+# Folder Navigation Aliases
     alias ..="cd .."
     alias ...="cd ../.."
+    alias lsx="ls -a"
 
 # Docker Aliases
     alias dk="docker"
