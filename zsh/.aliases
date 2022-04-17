@@ -1,0 +1,31 @@
+# CD Aliases
+    alias ..="cd .."
+    alias ...="cd ../.."
+
+# Docker Aliases
+    alias dk="docker"
+    alias dc="docker-compose"
+    alias dm="docker-machine"
+    alias ds="docker stack"
+    alias dsd="docker stack deploy"
+    alias dsd="docker stack remove"
+    alias dkps="docker container ps"
+    alias ctop="docker rm ctop; docker run --rm -ti \
+        --name=ctop \
+        -v /var/run/docker.sock:/var/run/docker.sock \
+        quay.io/vektorlab/ctop:latest"
+
+# Utils
+    # kill
+        function tid() {
+            ps -ax | grep -i $1 | grep -v 0:00.00 | awk '{ print $1 }' | uniq
+        }
+        function ak() {
+            kill -9 $(tid $1)
+        }
+
+# VSCode Aliases
+alias code='open -a Visual\ Studio\ Code'
+
+# Language Aliases
+alias python='python3'
