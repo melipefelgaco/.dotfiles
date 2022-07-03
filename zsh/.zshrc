@@ -1,15 +1,14 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && . "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:/usr/local/bin:$PATH
 export ZSH=$HOME/.oh-my-zsh
 # export ZSH_CUSTOM=$ZSH/custom
 # if [ ! -e $ZSH ]; then
 #   git clone https://github.com/robbyrussell/oh-my-zsh.git $ZSH
-# fi
 
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-HIST_STAMPS="dd-mm-yyyy"
+HIST_STAMPS="%d/%m/%y %T"
 # Plugins
 ZSH_PLUGINS_HOME=$ZSH/custom/plugins
 # Path to your oh-my-zsh installation.
@@ -99,24 +98,53 @@ plugins=(
 ####################################################
 # All Aliases
 ####################################################
+# TODO: TCP ALIASES BELOW
+# List all ports for tcp
+# sudo lsof -itcp
+# All ports for tcp, dont resolve port name from numbers
+# sudo lsof -itcp -P
+# Open files and ports of process #$PID
+# sudo lsof -p $PID
+# Only ports of tcp for process #$PID, dont resolve port name, dont resolve ip name
+# sudo lsof -a -p $PID -P -n -itcp
+# Only ports of tcp for process #$PID, dont resolve port name, dont resolve ip name, refresh every 5 seconds
+# sudo lsof -a -p $PID -P -n -itcp -r 5
+# Search by file (can be slow)
+# sudo lsof /complete/path/to/file
+alias show-all-ports='sudo lsof -itcp'
+
+####################################################
 # VSCode Aliases
 alias code='open -a Visual\ Studio\ Code'
-# Language Aliases
+# Python Aliases
 alias python='python3'
-# Source oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+# Run projects
+alias shopping-list-run="cd ~/Dev/shopping-list/ && code ."
+alias monolith-run="cd ~/Dev/monolith/ && code ."
+alias conways-run="cd ~/Dev/conways-game-of-life/ && code ."
+# Folder Navigation Aliases
+alias ..="cd .."
+alias ...="cd ../.."
+alias lsx="ls -a"
 # Docker Aliases
-    alias dk="docker"
-    alias dc="docker-compose"
-    alias dm="docker-machine"
-    alias ds="docker stack"
-    alias dsd="docker stack deploy"
-    alias dsd="docker stack remove"
-    alias dkps="docker container ps"
-    alias ctop="docker rm ctop; docker run --rm -ti \
-        --name=ctop \
-        -v /var/run/docker.sock:/var/run/docker.sock \
-        quay.io/vektorlab/ctop:latest"
+alias dk="docker"
+alias dc="docker-compose"
+alias dkcr="docker compose run"
+alias dkattfe="docker attach frontend_upskls_development"
+alias dkattbe="docker attach backend_upskls_development"
+alias dkexefe="docker exec -it frontend_upskls_development"
+alias dkexebe="docker exec -it backend_upskls_development"
+alias dkcdevup="docker compose --profile dev up"
+# alias dkcdown="docker-compose down" # not working
+alias dkcres="docker compose restart"
+alias dm="docker-machine"
+alias ds="docker stack"
+alias dsd="docker stack deploy"
+alias dsr="docker stack remove"
+alias ctop="docker rm ctop; docker run --rm -ti \
+    --name=ctop \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    quay.io/vektorlab/ctop:latest"
 ####################################################
 # User configuration
 
@@ -145,16 +173,29 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"
 #export PATH="/opt/homebrew/opt/postgresql@13/bin:$PATH"
-#export PATH="$HOME/.rbenv/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 
+# Init rbenv with zsh
+eval "$(rbenv init - zsh)"
 
-# The command bellow may or may not be needed. uncomment if getting errors with ruby or with bundler:
-#eval "$(rbenv init -)"
+# ----------------------------------------
+# NVM
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+# Set specific version to be default.
+# nvm alias default 16
+# Switch to default version on environment.
+# $ nvm use default
+# ----------------------------------------
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# If using asdf uncomment the following line
+# . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
-PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
-export PATH
+# PATH="/Library/Frameworks/Python.framework/Versions/3.5/bin:${PATH}"
+# export PATH
+
+# Source oh-my-zsh
+source $ZSH/oh-my-zsh.sh
 
 # Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && . "$HOME/.fig/shell/zshrc.post.zsh"
