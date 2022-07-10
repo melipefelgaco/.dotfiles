@@ -95,10 +95,12 @@ plugins=(
   python
   zsh-autosuggestions
 )
-####################################################
-# All Aliases
-####################################################
-# TODO: TCP ALIASES BELOW
+
+######################## ALIASES ########################
+# TODO:
+# - Test other TCP aliases
+# - ..
+#
 # List all ports for tcp
 # sudo lsof -itcp
 # All ports for tcp, dont resolve port name from numbers
@@ -112,21 +114,18 @@ plugins=(
 # Search by file (can be slow)
 # sudo lsof /complete/path/to/file
 alias show-all-ports='sudo lsof -itcp'
-
-####################################################
-# VSCode Aliases
+# VSCode
 alias code='open -a Visual\ Studio\ Code'
-# Python Aliases
+# Python
 alias python='python3'
-# Run projects
-alias shopping-list-run="cd ~/Dev/shopping-list/ && code ."
-alias monolith-run="cd ~/Dev/monolith/ && code ."
-alias conways-run="cd ~/Dev/conways-game-of-life/ && code ."
-# Folder Navigation Aliases
+# Folder nav
 alias ..="cd .."
 alias ...="cd ../.."
 alias lsx="ls -a"
-# Docker Aliases
+alias shopping-list-run="cd ~/Dev/shopping-list/ && code ."
+alias monolith-run="cd ~/Dev/monolith/ && code ."
+alias conways-run="cd ~/Dev/conways-game-of-life/ && code ."
+# Docker
 alias dk="docker"
 alias dc="docker-compose"
 alias dkcr="docker compose run"
@@ -135,7 +134,7 @@ alias dkattbe="docker attach backend_upskls_development"
 alias dkexefe="docker exec -it frontend_upskls_development"
 alias dkexebe="docker exec -it backend_upskls_development"
 alias dkcdevup="docker compose --profile dev up"
-# alias dkcdown="docker-compose down" # not working
+# alias dkcdown="docker-compose down" // not working (?)
 alias dkcres="docker compose restart"
 alias dm="docker-machine"
 alias ds="docker stack"
@@ -145,7 +144,9 @@ alias ctop="docker rm ctop; docker run --rm -ti \
     --name=ctop \
     -v /var/run/docker.sock:/var/run/docker.sock \
     quay.io/vektorlab/ctop:latest"
-####################################################
+######################## // ALIASES ########################
+
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
