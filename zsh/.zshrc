@@ -169,8 +169,6 @@ alias ctop="docker rm ctop; docker run --rm -ti \
     --name=ctop \
     -v /var/run/docker.sock:/var/run/docker.sock \
     quay.io/vektorlab/ctop:latest"
-# Work aliases
-alias run-moblyze="cd ~/Fetchly/moblyze && code ."
 ######################## // ALIASES ########################
 
 
