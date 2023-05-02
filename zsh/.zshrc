@@ -1,14 +1,11 @@
-# Load rbenv automatically
-# eval "$(rbenv init - zsh)"
-
-# Homebrew on the M1, where things install to /opt/homebrew
-export PATH=/opt/homebrew/bin:$PATH
-
-# Oh My Zsh Configs
+# Fig pre block. Keep at the top of this file.
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -19,34 +16,45 @@ ZSH_THEME="robbyrussell"
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
+
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
+
 # Uncomment one of the following lines to change the auto-update behavior
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
 # Uncomment the following line to change how often to auto-update (in days).
 # zstyle ':omz:update' frequency 13
+
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
+
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
+
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
+
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
+
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
 # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
+
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
 # DISABLE_UNTRACKED_FILES_DIRTY="true"
+
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
 # You can set one of the optional three formats:
@@ -84,52 +92,34 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+# Android development
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
 
-########## Ssh Key Export path ##########
-export SSH_KEY_PATH="~/.ssh/rsa_id"
-#########################################
-# ALIASES
-# List all ports for tcp
-# sudo lsof -itcp
-# All ports for tcp, dont resolve port name from numbers
-# sudo lsof -itcp -P
-# Open files and ports of process #$PID
-# sudo lsof -p $PID
-# Only ports of tcp for process #$PID, dont resolve port name, dont resolve ip name
-# sudo lsof -a -p $PID -P -n -itcp
-# Only ports of tcp for process #$PID, dont resolve port name, dont resolve ip name, refresh every 5 seconds
-# sudo lsof -a -p $PID -P -n -itcp -r 5
-# Search by file (can be slow)
-# sudo lsof /complete/path/to/file
-alias show-all-ports='sudo lsof -itcp'
-alias code='open -a Visual\ Studio\ Code'
-alias ..="cd .."
-alias ...="cd ../.."
-alias lsx="ls -a"
-alias run-playground="cd ~/Dev/random-code-playground && code ."
+# Cocoapods
+export GEM_HOME=$HOME/.gem
+export PATH=$GEM_HOME/bin:$PATH
+
+# Cmake PATH
+# PATH="/Applications/CMake.app/Contents/bin":"$PATH"
+
+
+# Aliases
+alias code='open -a Visual\ Studio\ Code' # Visual Studio Code
+alias ls='COLUMNS=50 ls --color=auto' # Set terminal columns so it does not break long lines on macOS
+alias lsx="ls -a" # Show hidden files
 alias dk="docker"
 alias dc="docker-compose"
 alias dkcr="docker compose run"
-alias dkattfe="docker attach frontend_upskls_development"
-alias dkattbe="docker attach backend_upskls_development"
-alias dkexefe="docker exec -it frontend_upskls_development"
-alias dkexebe="docker exec -it backend_upskls_development"
-alias dkcdevup="docker compose --profile dev up"
-# alias dkcdown="docker-compose down"
-alias dkcres="docker compose restart"
-alias dm="docker-machine"
-alias ds="docker stack"
-alias dsd="docker stack deploy"
-alias dsr="docker stack remove"
-alias ctop="docker rm ctop; docker run --rm -ti \
-    --name=ctop \
-    -v /var/run/docker.sock:/var/run/docker.sock \
-    quay.io/vektorlab/ctop:latest"
+
+# System Functions
+function tid() {ps -ax | grep -i $1 | grep -v 0:00.00 | awk '{ print $1 }' | uniq}
+function ak() {kill -9 $(tid $1)}
+
+eval "$(rbenv init -)"
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
