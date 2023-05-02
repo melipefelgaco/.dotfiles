@@ -75,8 +75,7 @@ plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
-# User configuration
-
+######################################### User configuration #########################################
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
@@ -87,7 +86,6 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='vim'
 # else
 #   export EDITOR='mvim'
-# fi
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -104,7 +102,6 @@ export PATH=$GEM_HOME/bin:$PATH
 # Cmake PATH
 # PATH="/Applications/CMake.app/Contents/bin":"$PATH"
 
-
 # Aliases
 alias code='open -a Visual\ Studio\ Code' # Visual Studio Code
 alias ls='COLUMNS=50 ls --color=auto' # Set terminal columns so it does not break long lines on macOS
@@ -116,7 +113,7 @@ alias dkcr="docker compose run"
 # System Functions
 function tid() {ps -ax | grep -i $1 | grep -v 0:00.00 | awk '{ print $1 }' | uniq}
 function ak() {kill -9 $(tid $1)}
-
+###################################### End of user configuration #####################################
 eval "$(rbenv init -)"
 
 # Fig post block. Keep at the bottom of this file.
