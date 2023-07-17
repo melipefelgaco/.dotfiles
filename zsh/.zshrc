@@ -119,6 +119,7 @@ alias dkcr="docker compose run"
 alias nif='npm install --force'
 alias nrd='npm run dev'
 alias nrb='npm run build'
+alias start-crystal='cd ~/bucksense/crystal/ && git checkout develop && git pull origin develop && nif && nrb && nrd && code .'
 
 # System Functions
 function tid() {ps -ax | grep -i $1 | grep -v 0:00.00 | awk '{ print $1 }' | uniq}
