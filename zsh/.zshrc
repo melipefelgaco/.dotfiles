@@ -3,6 +3,11 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+# NVM
+  export NVM_DIR="$HOME/.nvm"
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" ] && \. "$HOMEBREW_PREFIX/opt/nvm/nvm.sh" # This loads nvm
+    [ -s "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" ] && \. "$HOMEBREW_PREFIX/opt/nvm/etc/bash_completion.d/nvm" # This loads nvm bash_completion
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -102,7 +107,7 @@ export PATH=$GEM_HOME/bin:$PATH
 # Cmake PATH
 # PATH="/Applications/CMake.app/Contents/bin":"$PATH"
 
-# Aliases
+# My Aliases
 alias code='open -a Visual\ Studio\ Code' # Visual Studio Code
 alias ls='COLUMNS=50 ls --color=auto' # Set terminal columns so it does not break long lines on macOS
 alias lsx="ls -a" # Show hidden files
@@ -110,13 +115,18 @@ alias dk="docker"
 alias dc="docker-compose"
 alias dkcr="docker compose run"
 
+# Work Aliases
+alias nif='npm install --force'
+alias nrd='npm run dev'
+alias nrb='npm run build'
+
 # System Functions
 function tid() {ps -ax | grep -i $1 | grep -v 0:00.00 | awk '{ print $1 }' | uniq}
 function ak() {kill -9 $(tid $1)}
 ###################################### End of user configuration #####################################
 eval "$(rbenv init -)"
 
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
