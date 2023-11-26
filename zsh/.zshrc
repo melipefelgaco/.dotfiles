@@ -100,6 +100,9 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 
+# Python
+export PATH="/usr/local/opt/python@3.11/bin:$PATH"
+
 # Cocoapods
 export GEM_HOME=$HOME/.gem
 export PATH=$GEM_HOME/bin:$PATH
@@ -115,15 +118,35 @@ alias dk="docker"
 alias dc="docker-compose"
 alias dkcr="docker compose run"
 
+# Money tracker app aliases
+alias runapp='cd ~/dev/money-tracker && git pull && yarn install && yarn start'
+alias runserver='cd ~/dev/money-tracker && git pull && cd backend && nodemon index.js'
+
 # Work Aliases
 alias nif='npm install --force'
 alias nrd='npm run dev'
 alias nrb='npm run build'
-alias start-crystal='cd ~/bucksense/crystal/ && git checkout develop && git pull origin develop && nif && nrb && nrd && code .'
+alias start-crystal='cd ~/bucksense/crystal/ && git checkout develop && git pull origin develop && code . && nif && nrb && nrd'
 
 # System Functions
-function tid() {ps -ax | grep -i $1 | grep -v 0:00.00 | awk '{ print $1 }' | uniq}
-function ak() {kill -9 $(tid $1)}
+# take port as argument to kill process. example to kill port 3000 process: `killport 3000`
+killport() {
+    if [ -z "$1" ]; then
+        echo "Usage: killport <port>"
+        return 1
+    fi
+
+    PORT=$1
+    PID=$(lsof -i :$PORT | grep LISTEN | awk '{print $2}')
+
+    if [ -z "$PID" ]; then
+        echo "No process found on port $PORT"
+    else
+        echo "Killing process $PID on port $PORT"
+        kill -9 $PID
+    fi
+}
+
 ###################################### End of user configuration #####################################
 eval "$(rbenv init -)"
 
