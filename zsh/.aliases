@@ -1,32 +1,77 @@
-# Folder Navigation Aliases
-    alias ..="cd .."
-    alias ...="cd ../.."
-    alias lsx="ls -a"
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-# Docker Aliases
-    alias dk="docker"
-    alias dc="docker-compose"
-    alias dm="docker-machine"
-    alias ds="docker stack"
-    alias dsd="docker stack deploy"
-    alias dsd="docker stack remove"
-    alias dkps="docker container ps"
-    alias ctop="docker rm ctop; docker run --rm -ti \
-        --name=ctop \
-        -v /var/run/docker.sock:/var/run/docker.sock \
-        quay.io/vektorlab/ctop:latest"
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-# Utils
-    # kill
-        function tid() {
-            ps -ax | grep -i $1 | grep -v 0:00.00 | awk '{ print $1 }' | uniq
-        }
-        function ak() {
-            kill -9 $(tid $1)
-        }
+# JAVA HOME (for android development https://docs.expo.dev/workflow/android-studio-emulator/)
+export JAVA_HOME="/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home"
+export ANDROID_HOME="$HOME/Library/Android/sdk"
+export PATH="$PATH:$ANDROID_HOME/emulator"
+export PATH="$PATH:$ANDROID_HOME/platform-tools"
 
-# VSCode Aliases
+ZSH_THEME="robbyrussell"
+
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
+
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
+export ARCHFLAGS="-arch x86_64"
+
+
+export PATH="/usr/local/bin:$PATH"
+export PATH="/opt/homebrew/bin:$PATH"
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# PNPM
+export PNPM_HOME="/Users/felipemms/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# Aliases
 alias code='open -a Visual\ Studio\ Code'
+alias ls='COLUMNS=50 ls --color=auto'
+alias reload="source ~/.zshrc"
+alias ..="cd .."
+alias ...="cd ../.."
+alias lsx="ls -a"
+alias ls='COLUMNS=50 ls --color=auto'
 
-# Language Aliases
+# Python
 alias python='python3'
+alias pip=pip3
+
+# Money Tracker App aliases (mysql) | non-sensitive aliases:
+alias clearmysqltables='mysql -u mysqluser -p -e "DELETE FROM user_expenses; DELETE FROM transactions; DELETE FROM confirmations; DELETE FROM users;" money_tracker_db'
+
+# Docker
+alias dk="docker"
+alias dc="docker-compose"
+alias dm="docker-machine"
+alias ds="docker stack"
+alias dsd="docker stack deploy"
+alias dsd="docker stack remove"
+alias dkps="docker container ps"
+alias ctop="docker rm ctop; docker run --rm -ti \
+    --name=ctop \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    quay.io/vektorlab/ctop:latest"
+alias dcrestart='docker-compose down --volumes --remove-orphans && docker compose up --build'
+
+# Dungeon Crawl Stone Soup aliases
+alias crawl="cd ~/games/dcss/crawl/crawl-ref/source && ./crawl"
+alias crawl-save="~/games/dcss/dcss_backup_saves.sh"
+alias crawl-load="~/games/dcss/dcss_load_save.sh"
+
+# Bun
+bun completions
+[ -s "/Users/felipemms/.bun/_bun" ] && source "/Users/felipemms/.bun/_bun"
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
