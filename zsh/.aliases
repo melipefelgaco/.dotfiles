@@ -29,29 +29,29 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # PNPM
-export PNPM_HOME="/Users/felipemms/Library/pnpm"
+export PNPM_HOME="~/Library/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 
 # Aliases
+alias ..="cd .."
+alias ...="cd ../.."
 alias code='open -a Visual\ Studio\ Code'
 alias ls='COLUMNS=50 ls --color=auto'
 alias reload="source ~/.zshrc"
-alias ..="cd .."
-alias ...="cd ../.."
 alias lsx="ls -a"
 alias ls='COLUMNS=50 ls --color=auto'
 
-# Python
+# Python aliases
 alias python='python3'
 alias pip=pip3
 
 # Money Tracker App aliases (mysql) | non-sensitive aliases:
 alias clearmysqltables='mysql -u mysqluser -p -e "DELETE FROM user_expenses; DELETE FROM transactions; DELETE FROM confirmations; DELETE FROM users;" money_tracker_db'
 
-# Docker
+# Docker aliases
 alias dk="docker"
 alias dc="docker-compose"
 alias dm="docker-machine"
@@ -71,6 +71,6 @@ alias crawl-save="~/games/dcss/dcss_backup_saves.sh"
 alias crawl-load="~/games/dcss/dcss_load_save.sh"
 
 # Bun
-[ -s "/Users/felipemms/.bun/_bun" ] && source "/Users/felipemms/.bun/_bun"
+[ -s "~/.bun/_bun" ] && source "~/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
