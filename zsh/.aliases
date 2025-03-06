@@ -71,7 +71,6 @@ alias crawl-save="~/games/dcss/dcss_backup_saves.sh"
 alias crawl-load="~/games/dcss/dcss_load_save.sh"
 
 # Bun
-bun completions
 [ -s "/Users/felipemms/.bun/_bun" ] && source "/Users/felipemms/.bun/_bun"
 export BUN_INSTALL="$HOME/.bun"
 export PATH="$BUN_INSTALL/bin:$PATH"
