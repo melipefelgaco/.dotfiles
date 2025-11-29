@@ -2,22 +2,24 @@
 # https://nethackwiki.com/wiki/Options
 # https://alt.org/nethack/userdata/E/Eidolos/Eidolos.nh343rc
 
-OPTION=role:Val,race:Dwa,gender:Mal,align:Law
+# OPTION=role:Val,race:Dwa,gender:Mal,align:Law
+OPTION=role:Wiz,race:Elf,gender:Mal,align:Law
 OPTIONS=number_pad:1
 OPTIONS=autodescribe
 OPTIONS=autodig
 OPTIONS=autoquiver
 OPTIONS=BOULDER:0
-OPTIONS=catname:Number six with extra dip
-OPTIONS=dogname:Esquece eu sempre morro
-OPTIONS=horsename:ReLaMpAgO mArKiN
+OPTIONS=catname:_NUMBER 6 WITH EXTRA DIP_
+OPTIONS=dogname:_EXQUECE EU SEMPRE MORRO_
+OPTIONS=horsename:_ReLaMpAgO mArKiN_
 OPTIONS=clicklook
-OPTIONS=dark_room
+# OPTIONS=dark_room
 OPTIONS=disclose:+i +a +v +g +c +o
 OPTIONS=extmenu
 OPTIONS=force_invmenu
+OPTIONS=perm_invent
 OPTIONS=fruit:pizza
-#OPTIONS=hilite_pet
+# OPTIONS=hilite_pet
 OPTIONS=hilite_pile
 #OPTIONS=pettype:cat
 OPTIONS=pile_limit:0
@@ -26,6 +28,9 @@ OPTIONS=showexp
 OPTIONS=time
 OPTIONS=verbose
 OPTIONS=windowtype:curses
+OPTIONS=autopickup
+
+
 
 # Ensure changes will be shown for a few turns after they happen.
 # You may need this first to enable Status hilites. Setting to 0 disables it entirely.
@@ -350,3 +355,4 @@ MENUCOLOR="\{[mp]\}"=lightmagenta
 
 
 ###########################################################################
+OPTIONS=pickup_types:$"=/!?+
